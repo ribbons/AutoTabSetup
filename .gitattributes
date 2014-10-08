@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Adjust default settings for specific files
+*.sln      text eol=crlf
+*.vcxproj* text eol=crlf
