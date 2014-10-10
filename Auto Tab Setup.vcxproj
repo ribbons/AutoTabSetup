@@ -80,6 +80,8 @@
     <None Include="Auto Tab Setup.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AppEventSink.cpp" />
+    <ClCompile Include="DocEventSink.cpp" />
     <ClCompile Include="plugin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -87,6 +89,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppEventSink.h" />
+    <ClInclude Include="DocEventSink.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

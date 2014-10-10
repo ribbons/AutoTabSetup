@@ -36,3 +36,6 @@
 #include "allocator.h"
 #include "pnextstring.h"
 #include "extiface.h"
+#include "Scintilla.h"
+
+static extensions::IPN* g_pn;
