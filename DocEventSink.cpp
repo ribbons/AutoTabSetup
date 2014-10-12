@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "DocEventSink.h"
+#include "FindIndent.h"
 #include <vector>
-
-const int MAX_ANALYSE_LINES = 100;
 
 /// Called when the document closes
 void DocEventSink::OnDocClosing()
@@ -14,14 +13,8 @@ void DocEventSink::OnDocClosing()
 void DocEventSink::OnAfterLoad()
 {
 	int numLines = m_doc->SendEditorMessage(SCI_GETLINECOUNT, (WPARAM)0, (LPARAM)0);
-	
-	if(numLines < MAX_ANALYSE_LINES)
-	{
-		numLines = MAX_ANALYSE_LINES;
-	}
-	
-	int tabLines = 0;
-	int spaceLines = 0;
+
+	FindIndent finder;
 
 	for(int lineNum = 0; lineNum < numLines; lineNum++)
 	{
@@ -30,67 +23,25 @@ void DocEventSink::OnAfterLoad()
 		if(lineLength > 0)
 		{
 			std::vector<char> line;
-
 			line.resize(lineLength);
+
 			m_doc->SendEditorMessage(SCI_GETLINE, lineNum, &line[0]);
 
-			bool tabs = false;
-			bool spaces = false;
-			bool finished = false;
-
-			for(int pos = 0; pos < lineLength; pos++)
+			if(!finder.ProcessLine(&line[0], line.size()))
 			{
-				switch(line[pos])
-				{
-					case '\t':
-						if(spaces)
-						{
-							finished = true;
-						}
-						else
-						{
-							tabs = true;
-						}
-
-						break;
-					case ' ':
-						if(tabs)
-						{
-							finished = true;
-						}
-						else
-						{
-							spaces = true;
-						}
-
-						break;
-					default:
-						finished = true;
-				}
-
-				if(finished)
-				{
-					break;
-				}
-			}
-
-			if(tabs && !spaces)
-			{
-				tabLines++;
-			}
-			else if(spaces && !tabs)
-			{
-				spaceLines++;
+				break;
 			}
 		}
 	}
 
-	if(tabLines > spaceLines)
+	switch(finder.getTabStyle())
 	{
-		m_doc->SendEditorMessage(SCI_SETUSETABS, true, (LPARAM)0);
-	}
-	else if(spaceLines > tabLines)
-	{
-		m_doc->SendEditorMessage(SCI_SETUSETABS, false, (LPARAM)0);
+		case finder.tsTabs:
+			m_doc->SendEditorMessage(SCI_SETUSETABS, true, (LPARAM)0);
+			break;
+
+		case finder.tsSpaces:
+			m_doc->SendEditorMessage(SCI_SETUSETABS, false, (LPARAM)0);
+			break;
 	}
 }

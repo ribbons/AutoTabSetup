@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Auto Tab Setup", "Auto Tab Setup.vcxproj", "{B80F5E3D-1E80-4F53-A71C-488E409E0A23}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{47FFB490-4AD6-4213-8D59-35FFC6A566B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{B80F5E3D-1E80-4F53-A71C-488E409E0A23}.Debug|Win32.Build.0 = Debug|Win32
 		{B80F5E3D-1E80-4F53-A71C-488E409E0A23}.Release|Win32.ActiveCfg = Release|Win32
 		{B80F5E3D-1E80-4F53-A71C-488E409E0A23}.Release|Win32.Build.0 = Release|Win32
+		{47FFB490-4AD6-4213-8D59-35FFC6A566B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{47FFB490-4AD6-4213-8D59-35FFC6A566B0}.Debug|Win32.Build.0 = Debug|Win32
+		{47FFB490-4AD6-4213-8D59-35FFC6A566B0}.Release|Win32.ActiveCfg = Release|Win32
+		{47FFB490-4AD6-4213-8D59-35FFC6A566B0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

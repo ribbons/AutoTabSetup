@@ -15,38 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Auto Tab Setup.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="plugin.cpp">
+    <ClCompile Include="..\FindIndent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AppEventSink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DocEventSink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FindIndent.cpp">
+    <ClCompile Include="Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\FindIndent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AppEventSink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DocEventSink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FindIndent.h">
+    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
