@@ -14,6 +14,6 @@ BOOST_AUTO_TEST_CASE(blank_line)
 {
 	FindIndent finder;
 	
-	BOOST_CHECK_EQUAL(finder.ProcessLine("", 0), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine(""), true);
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
 }
