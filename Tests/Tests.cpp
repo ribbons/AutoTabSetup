@@ -10,10 +10,26 @@ BOOST_AUTO_TEST_CASE(default_values)
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
 }
 
-BOOST_AUTO_TEST_CASE(blank_line)
+BOOST_AUTO_TEST_CASE(empty_string)
 {
 	FindIndent finder;
 	
 	BOOST_CHECK_EQUAL(finder.ProcessLine(""), true);
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
+}
+
+BOOST_AUTO_TEST_CASE(single_tab)
+{
+	FindIndent finder;
+	
+	BOOST_CHECK_EQUAL(finder.ProcessLine("\t"), true);
+	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsTabs);
+}
+
+BOOST_AUTO_TEST_CASE(single_space)
+{
+	FindIndent finder;
+	
+	BOOST_CHECK_EQUAL(finder.ProcessLine(" "), true);
+	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
 }
