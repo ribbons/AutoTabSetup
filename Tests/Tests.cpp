@@ -33,3 +33,19 @@ BOOST_AUTO_TEST_CASE(single_space)
 	BOOST_CHECK_EQUAL(finder.ProcessLine(" "), true);
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
 }
+
+BOOST_AUTO_TEST_CASE(tab_space)
+{
+	FindIndent finder;
+	
+	BOOST_CHECK_EQUAL(finder.ProcessLine("\t "), true);
+	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
+}
+
+BOOST_AUTO_TEST_CASE(space_tab)
+{
+	FindIndent finder;
+	
+	BOOST_CHECK_EQUAL(finder.ProcessLine(" \t"), true);
+	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
+}

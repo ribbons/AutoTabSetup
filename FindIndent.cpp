@@ -14,24 +14,20 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 		switch(buffer[pos])
 		{
 			case '\t':
+				tabs = true;
+
 				if(spaces)
 				{
 					finished = true;
 				}
-				else
-				{
-					tabs = true;
-				}
 
 				break;
 			case ' ':
+				spaces = true;
+
 				if(tabs)
 				{
 					finished = true;
-				}
-				else
-				{
-					spaces = true;
 				}
 
 				break;
