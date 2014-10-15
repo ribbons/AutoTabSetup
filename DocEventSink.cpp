@@ -44,4 +44,11 @@ void DocEventSink::OnAfterLoad()
 			m_doc->SendEditorMessage(SCI_SETUSETABS, false, (LPARAM)0);
 			break;
 	}
+
+	int indentSize = finder.getIndentSize();
+
+	if(indentSize != FindIndent::indUnknown)
+	{
+		m_doc->SendEditorMessage(SCI_SETTABWIDTH, indentSize, (LPARAM)0);
+	}
 }

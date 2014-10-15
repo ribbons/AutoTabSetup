@@ -6,7 +6,7 @@ const int MAX_ANALYSE_LINES = 100;
 bool FindIndent::ProcessLine(const char* buffer, int length)
 {
 	bool tabs = false;
-	bool spaces = false;
+	int spaces = 0;
 	bool finished = false;
 
 	for(int pos = 0; pos < length; pos++)
@@ -16,14 +16,14 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 			case '\t':
 				tabs = true;
 
-				if(spaces)
+				if(spaces > 0)
 				{
 					finished = true;
 				}
 
 				break;
 			case ' ':
-				spaces = true;
+				spaces++;
 
 				if(tabs)
 				{
@@ -41,13 +41,20 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 		}
 	}
 
-	if(tabs && !spaces)
+	if(tabs && spaces == 0)
 	{
 		tabLines++;
 	}
-	else if(spaces && !tabs)
+	else if(spaces > 0 && !tabs)
 	{
 		spaceLines++;
+
+		int difference = abs(spaces - prevLineInd);
+
+		if(difference <= maxIndent)
+		{
+			diffCounts[difference - 1]++;
+		}
 	}
 
 	return ++lines < MAX_ANALYSE_LINES;
@@ -65,4 +72,21 @@ FindIndent::TabStyle FindIndent::getTabStyle()
 	}
 
 	return tsUnknown;
+}
+
+int FindIndent::getIndentSize()
+{
+	int maxPos = indUnknown;
+	int maxVal = 0;
+
+	for(int i = 0; i < maxIndent; i++)
+	{
+		if(diffCounts[i] > maxVal)
+		{
+			maxPos = i + 1;
+			maxVal = diffCounts[i];
+		}
+	}
+
+	return maxPos;
 }

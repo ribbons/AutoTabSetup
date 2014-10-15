@@ -1,16 +1,21 @@
 #include <string>
+#include <vector>
 
 class FindIndent
 {
 private:
-	int lines;
-	int tabLines;
-	int spaceLines;
+	static const int maxIndent = 8;
+
+	int lines, tabLines, spaceLines;
+	int prevLineInd;
+	std::vector<int> diffCounts;
 
 public:
 	typedef enum { tsUnknown, tsTabs, tsSpaces } TabStyle;
 
-	FindIndent::FindIndent() : lines(0), tabLines(0), spaceLines(0) {}
+	static const int indUnknown = 0;
+
+	FindIndent::FindIndent() : lines(0), tabLines(0), spaceLines(0), prevLineInd(0), diffCounts(maxIndent) {}
 	
 	bool ProcessLine(const char* buffer, int length);
 
@@ -20,4 +25,6 @@ public:
 	}
 
 	TabStyle getTabStyle();
+
+	int getIndentSize();
 };
