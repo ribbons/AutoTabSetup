@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "FindIndent.h"
 
-const int MAX_ANALYSE_LINES = 100;
-
 bool FindIndent::ProcessLine(const char* buffer, int length)
 {
 	bool tabs = false;
@@ -57,7 +55,28 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 		}
 	}
 
-	return ++lines < MAX_ANALYSE_LINES;
+	return ++lines < maxAnalyseLines;
+}
+
+int FindIndent::getMaxIndent()
+{
+	return maxIndent;
+}
+
+void FindIndent::setMaxIndent(int max)
+{
+	maxIndent = max;
+	diffCounts.resize(max);
+}
+
+int FindIndent::getMaxAnalyseLines()
+{
+	return maxAnalyseLines;
+}
+
+void FindIndent::setMaxAnalyseLines(int max)
+{
+	maxAnalyseLines = max;
 }
 
 FindIndent::TabStyle FindIndent::getTabStyle()

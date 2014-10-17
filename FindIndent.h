@@ -4,8 +4,7 @@
 class FindIndent
 {
 private:
-	static const int maxIndent = 8;
-
+	int maxIndent, maxAnalyseLines;
 	int lines, tabLines, spaceLines;
 	int prevLineInd;
 	std::vector<int> diffCounts;
@@ -15,7 +14,10 @@ public:
 
 	static const int indUnknown = 0;
 
-	FindIndent::FindIndent() : lines(0), tabLines(0), spaceLines(0), prevLineInd(0), diffCounts(maxIndent) {}
+	FindIndent::FindIndent() : maxIndent(8), maxAnalyseLines(100),
+		lines(0), tabLines(0), spaceLines(0),
+		prevLineInd(0),
+		diffCounts(maxIndent) {}
 	
 	bool ProcessLine(const char* buffer, int length);
 
@@ -23,6 +25,14 @@ public:
 	{
 		return ProcessLine(text.c_str(), text.length());
 	}
+
+	int getMaxIndent();
+
+	void setMaxIndent(int max);
+
+	int getMaxAnalyseLines();
+
+	void setMaxAnalyseLines(int max);
 
 	TabStyle getTabStyle();
 
