@@ -66,7 +66,7 @@ int FindIndent::getMinIndent()
 void FindIndent::setMinIndent(int min)
 {
 	minIndent = min;
-	diffCounts.resize(maxIndent - min);
+	diffCounts.resize(maxIndent - min + 1);
 }
 
 int FindIndent::getMaxIndent()
@@ -77,7 +77,7 @@ int FindIndent::getMaxIndent()
 void FindIndent::setMaxIndent(int max)
 {
 	maxIndent = max;
-	diffCounts.resize(max - minIndent);
+	diffCounts.resize(max - minIndent + 1);
 }
 
 int FindIndent::getMaxAnalyseLines()

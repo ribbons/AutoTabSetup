@@ -17,7 +17,7 @@ public:
 	FindIndent::FindIndent() : minIndent(2), maxIndent(8), maxAnalyseLines(100),
 		lines(0), tabLines(0), spaceLines(0),
 		prevLineInd(0),
-		diffCounts(maxIndent - minIndent) {}
+		diffCounts(maxIndent - minIndent + 1) {}
 	
 	bool ProcessLine(const char* buffer, int length);
 

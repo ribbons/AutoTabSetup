@@ -48,15 +48,6 @@ BOOST_AUTO_TEST_CASE(single_tab)
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsTabs);
 }
 
-BOOST_AUTO_TEST_CASE(single_space)
-{
-	FindIndent finder;
-	
-	BOOST_CHECK_EQUAL(finder.ProcessLine(" "), true);
-	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
-	BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
-}
-
 BOOST_AUTO_TEST_CASE(tab_space)
 {
 	FindIndent finder;
@@ -73,20 +64,23 @@ BOOST_AUTO_TEST_CASE(space_tab)
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
 }
 
-BOOST_AUTO_TEST_CASE(two_spaces)
+BOOST_AUTO_TEST_CASE(indent_lengths)
 {
-	FindIndent finder;
-	
-	BOOST_CHECK_EQUAL(finder.ProcessLine("  "), true);
-	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
-	BOOST_CHECK_EQUAL(finder.getIndentSize(), 2);
-}
+	for(int count = 1; count <= 10; count++)
+	{
+		FindIndent finder;
+		std::string spaces(count, ' ');
 
-BOOST_AUTO_TEST_CASE(four_spaces)
-{
-	FindIndent finder;
-	
-	BOOST_CHECK_EQUAL(finder.ProcessLine("    "), true);
-	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
-	BOOST_CHECK_EQUAL(finder.getIndentSize(), 4);
+		BOOST_CHECK_EQUAL(finder.ProcessLine(spaces), true);
+		BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
+
+		if(count >= finder.getMinIndent() && count <= finder.getMaxIndent())
+		{
+			BOOST_CHECK_EQUAL(finder.getIndentSize(), count);
+		}
+		else
+		{
+			BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
+		}
+	}
 }
