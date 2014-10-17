@@ -9,8 +9,8 @@ void DocEventSink::OnDocClosing()
 	m_doc.reset();
 }
 
-/// Called after a document is loaded
-void DocEventSink::OnAfterLoad()
+/// Called when the scheme changes
+void DocEventSink::OnSchemeChange(const char* scheme)
 {
 	int numLines = m_doc->SendEditorMessage(SCI_GETLINECOUNT, (WPARAM)0, (LPARAM)0);
 

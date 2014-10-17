@@ -6,13 +6,13 @@ public:
 	virtual ~DocEventSink(){}
 
 	/// Called when the scheme changes
-	virtual void OnSchemeChange(const char* scheme){}
+	virtual void OnSchemeChange(const char* scheme);
 	
 	/// Called when the document closes
 	virtual void OnDocClosing();
 
 	/// Called after a document is loaded
-	virtual void OnAfterLoad();
+	virtual void OnAfterLoad(){}
 
 	/// Called before the document is saved
 	virtual void OnBeforeSave(const wchar_t* filename){}
