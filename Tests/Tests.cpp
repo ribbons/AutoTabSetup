@@ -17,11 +17,14 @@ BOOST_AUTO_TEST_CASE(accessors)
 {
 	FindIndent finder;
 
+	const int testMinIndent = 1;
 	const int testMaxIndent = 25;
 	const int testMaxAnalyse = 1000;
 
+	finder.setMinIndent(testMinIndent);
 	finder.setMaxIndent(testMaxIndent);
 	BOOST_CHECK_NO_THROW(finder.getIndentSize());
+	BOOST_CHECK_EQUAL(finder.getMinIndent(), testMinIndent);
 	BOOST_CHECK_EQUAL(finder.getMaxIndent(), testMaxIndent);
 
 	finder.setMaxAnalyseLines(testMaxAnalyse);
@@ -51,6 +54,7 @@ BOOST_AUTO_TEST_CASE(single_space)
 	
 	BOOST_CHECK_EQUAL(finder.ProcessLine(" "), true);
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
 }
 
 BOOST_AUTO_TEST_CASE(tab_space)
