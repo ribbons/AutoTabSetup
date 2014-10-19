@@ -5,7 +5,7 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 {
 	bool tabs = false;
 	int spaces = 0;
-	bool finished = false;
+	bool skip = false;
 
 	for(int pos = 0; pos < length; pos++)
 	{
@@ -16,7 +16,8 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 
 				if(spaces > 0)
 				{
-					finished = true;
+					skip = true;
+					goto EOL;
 				}
 
 				break;
@@ -25,33 +26,37 @@ bool FindIndent::ProcessLine(const char* buffer, int length)
 
 				if(tabs)
 				{
-					finished = true;
+					skip = true;
+					goto EOL;
 				}
 
 				break;
+			case '*':
+				skip = true;
+				goto EOL;
 			default:
-				finished = true;
-		}
-
-		if(finished)
-		{
-			break;
+				goto EOL;
 		}
 	}
 
-	if(tabs && spaces == 0)
-	{
-		tabLines++;
-	}
-	else if(spaces > 0 && !tabs)
-	{
-		spaceLines++;
+EOL:
 
-		int difference = abs(spaces - prevLineInd);
-
-		if(difference >= minIndent && difference <= maxIndent)
+	if(!skip)
+	{
+		if(tabs && spaces == 0)
 		{
-			diffCounts[difference - minIndent]++;
+			tabLines++;
+		}
+		else if(spaces > 0 && !tabs)
+		{
+			spaceLines++;
+
+			int difference = abs(spaces - prevLineInd);
+
+			if(difference >= minIndent && difference <= maxIndent)
+			{
+				diffCounts[difference - minIndent]++;
+			}
 		}
 	}
 

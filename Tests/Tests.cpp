@@ -84,3 +84,18 @@ BOOST_AUTO_TEST_CASE(indent_lengths)
 		}
 	}
 }
+
+BOOST_AUTO_TEST_CASE(c_style_comments)
+{
+	FindIndent findTabs, findIndent;
+
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine(" *"), true);
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine(" *"), true);
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine("\t"), true);
+	BOOST_CHECK_EQUAL(findTabs.getTabStyle(), FindIndent::tsTabs);
+
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine("  /*"), true);
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine("   *"), true);
+	BOOST_CHECK_EQUAL(findTabs.ProcessLine("   *"), true);
+	BOOST_CHECK_EQUAL(findTabs.getIndentSize(), 2);
+}
