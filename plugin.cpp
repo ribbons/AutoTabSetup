@@ -22,8 +22,6 @@ bool __stdcall pn_init_extension(int iface_version, extensions::IPN* pn)
 	// Store a global reference to the IPN instance
 	g_pn = pn;
 
-	pn->GetGlobalOutputWindow()->AddToolOutput(L"Auto Tab Setup loaded");
-	
 	extensions::IAppEventSinkPtr appSink(new AppEventSink());
 	pn->AddEventSink(appSink);
 
