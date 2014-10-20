@@ -46,10 +46,12 @@ EOL:
 		if(tabs && spaces == 0)
 		{
 			tabLines++;
+			indentLines++;
 		}
 		else if(spaces > 0 && !tabs)
 		{
 			spaceLines++;
+			indentLines++;
 
 			int difference = abs(spaces - prevLineInd);
 
@@ -116,7 +118,7 @@ int FindIndent::getIndentSize()
 
 	for(unsigned int i = 0; i < diffCounts.size(); i++)
 	{
-		if(diffCounts[i] > maxVal)
+		if(diffCounts[i] > maxVal && diffCounts[i] > indentLines / 10)
 		{
 			maxPos = i + minIndent;
 			maxVal = diffCounts[i];

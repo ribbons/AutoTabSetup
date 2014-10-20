@@ -99,3 +99,32 @@ BOOST_AUTO_TEST_CASE(c_style_comments)
 	BOOST_CHECK_EQUAL(findTabs.ProcessLine("   *"), true);
 	BOOST_CHECK_EQUAL(findTabs.getIndentSize(), 2);
 }
+
+BOOST_AUTO_TEST_CASE(blank_lines)
+{
+	FindIndent finder;
+
+	BOOST_CHECK_EQUAL(finder.ProcessLine("    "), true);
+
+	for(int count = 0; count < 9; count++)
+	{
+		BOOST_CHECK_EQUAL(finder.ProcessLine("\n"), true);
+	}
+
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), 4);
+}
+
+BOOST_AUTO_TEST_CASE(line_continuation)
+{
+	FindIndent finder;
+
+	BOOST_CHECK_EQUAL(finder.ProcessLine("unlink 'file1',"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("       'file2';"), true);
+
+	for(int count = 0; count < 9; count++)
+	{
+		BOOST_CHECK_EQUAL(finder.ProcessLine("\t"), true);
+	}
+
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
+}
