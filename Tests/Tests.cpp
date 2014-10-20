@@ -8,7 +8,7 @@ BOOST_AUTO_TEST_CASE(default_values)
 {
 	FindIndent finder;
 	BOOST_CHECK_EQUAL(finder.getMaxIndent(), 8);
-	BOOST_CHECK_EQUAL(finder.getMaxAnalyseLines(), 100);
+	BOOST_CHECK_EQUAL(finder.getMaxAnalyseLines(), 500);
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
 	BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
 }
