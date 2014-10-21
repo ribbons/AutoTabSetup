@@ -64,9 +64,8 @@ BOOST_AUTO_TEST_CASE(indent_lengths)
 	for(int count = 1; count <= 10; count++)
 	{
 		FindIndent finder;
-		std::string spaces(count, ' ');
 
-		BOOST_CHECK_EQUAL(finder.ProcessLine(spaces), true);
+		BOOST_CHECK_EQUAL(finder.ProcessLine(std::string(count, ' ')), true);
 		BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
 
 		if(count >= finder.getMinIndent() && count <= finder.getMaxIndent())
@@ -78,6 +77,21 @@ BOOST_AUTO_TEST_CASE(indent_lengths)
 			BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
 		}
 	}
+}
+
+BOOST_AUTO_TEST_CASE(indent_depths)
+{
+	FindIndent finder;
+
+	BOOST_CHECK_EQUAL(finder.ProcessLine("switch(value)"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("{"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("  case 1:"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("    a++;"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("    break;"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("}"), true);
+
+	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsSpaces);
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), 2);
 }
 
 BOOST_AUTO_TEST_CASE(c_style_comments)

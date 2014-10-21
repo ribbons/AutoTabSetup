@@ -54,6 +54,7 @@ EOL:
 			indentLines++;
 
 			int difference = abs(spaces - prevLineInd);
+			prevLineInd = spaces;
 
 			if(difference >= minIndent && difference <= maxIndent)
 			{
