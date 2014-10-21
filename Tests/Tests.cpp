@@ -48,20 +48,15 @@ BOOST_AUTO_TEST_CASE(single_tab)
 	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsTabs);
 }
 
-BOOST_AUTO_TEST_CASE(tab_space)
+BOOST_AUTO_TEST_CASE(mixed_indent)
 {
-	FindIndent finder;
+	FindIndent tabSpace, spaceTab;
 	
-	BOOST_CHECK_EQUAL(finder.ProcessLine("\t "), true);
-	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
-}
+	BOOST_CHECK_EQUAL(tabSpace.ProcessLine("\t "), true);
+	BOOST_CHECK_EQUAL(tabSpace.getTabStyle(), FindIndent::tsUnknown);
 
-BOOST_AUTO_TEST_CASE(space_tab)
-{
-	FindIndent finder;
-	
-	BOOST_CHECK_EQUAL(finder.ProcessLine(" \t"), true);
-	BOOST_CHECK_EQUAL(finder.getTabStyle(), FindIndent::tsUnknown);
+	BOOST_CHECK_EQUAL(spaceTab.ProcessLine(" \t"), true);
+	BOOST_CHECK_EQUAL(spaceTab.getTabStyle(), FindIndent::tsUnknown);
 }
 
 BOOST_AUTO_TEST_CASE(indent_lengths)
