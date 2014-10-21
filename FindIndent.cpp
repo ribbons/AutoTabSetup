@@ -43,12 +43,12 @@ EOL:
 
 	if(!skip)
 	{
-		if(tabs && spaces == 0)
+		if(tabs)
 		{
 			tabLines++;
 			indentLines++;
 		}
-		else if(spaces > 0 && !tabs)
+		else if(spaces > 0)
 		{
 			spaceLines++;
 			indentLines++;
