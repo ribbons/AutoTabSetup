@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE(c_style_comments)
 	BOOST_CHECK_EQUAL(findTabs.getIndentSize(), 2);
 }
 
-BOOST_AUTO_TEST_CASE(blank_lines)
+BOOST_AUTO_TEST_CASE(ignore_blank_lines)
 {
 	FindIndent finder;
 
@@ -119,6 +119,19 @@ BOOST_AUTO_TEST_CASE(blank_lines)
 	{
 		BOOST_CHECK_EQUAL(finder.ProcessLine("\n"), true);
 	}
+
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), 4);
+}
+
+BOOST_AUTO_TEST_CASE(interleaved_blank_lines)
+{
+	FindIndent finder;
+
+	BOOST_CHECK_EQUAL(finder.ProcessLine("    "), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("\n"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("        "), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("\n"), true);
+	BOOST_CHECK_EQUAL(finder.ProcessLine("        "), true);
 
 	BOOST_CHECK_EQUAL(finder.getIndentSize(), 4);
 }
@@ -136,4 +149,17 @@ BOOST_AUTO_TEST_CASE(line_continuation)
 	}
 
 	BOOST_CHECK_EQUAL(finder.getIndentSize(), FindIndent::indUnknown);
+}
+
+BOOST_AUTO_TEST_CASE(non_indent_lines)
+{
+	FindIndent finder;
+
+	for(int count = 0; count < 10; count++)
+	{
+		BOOST_CHECK_EQUAL(finder.ProcessLine("first"), true);
+		BOOST_CHECK_EQUAL(finder.ProcessLine("   second"), true);
+	}
+
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), 3);
 }
