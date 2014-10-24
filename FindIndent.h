@@ -5,7 +5,7 @@ class FindIndent
 {
 private:
 	int minIndent, maxIndent, maxAnalyseLines;
-	int lines, indentLines, tabLines, spaceLines;
+	int lines, thresholdLines, tabLines, spaceLines;
 	int prevLineInd;
 	std::vector<int> diffCounts;
 
@@ -15,7 +15,7 @@ public:
 	static const int indUnknown = 0;
 
 	FindIndent::FindIndent() : minIndent(2), maxIndent(8), maxAnalyseLines(500),
-		lines(0), indentLines(0), tabLines(0), spaceLines(0),
+		lines(0), thresholdLines(0), tabLines(0), spaceLines(0),
 		prevLineInd(0),
 		diffCounts(maxIndent - minIndent + 1) {}
 	

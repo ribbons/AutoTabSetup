@@ -163,3 +163,17 @@ BOOST_AUTO_TEST_CASE(non_indent_lines)
 
 	BOOST_CHECK_EQUAL(finder.getIndentSize(), 3);
 }
+
+BOOST_AUTO_TEST_CASE(indent_level_threshold)
+{
+	FindIndent finder;
+
+	BOOST_CHECK_EQUAL(finder.ProcessLine("first"), true);
+
+	for(int count = 0; count < 10; count++)
+	{
+		BOOST_CHECK_EQUAL(finder.ProcessLine("   second"), true);
+	}
+
+	BOOST_CHECK_EQUAL(finder.getIndentSize(), 3);
+}

@@ -63,14 +63,13 @@ EOL:
 		if(tabs)
 		{
 			tabLines++;
-			indentLines++;
+			thresholdLines++;
 		}
 		else 
 		{
 			if(spaces > 0)
 			{
 				spaceLines++;
-				indentLines++;
 			}
 
 			if(length > 0)
@@ -81,6 +80,7 @@ EOL:
 				if(difference >= minIndent && difference <= maxIndent)
 				{
 					diffCounts[difference - minIndent]++;
+					thresholdLines++;
 				}
 			}
 		}
@@ -142,7 +142,7 @@ int FindIndent::getIndentSize()
 
 	for(unsigned int i = 0; i < diffCounts.size(); i++)
 	{
-		if(diffCounts[i] > maxVal && diffCounts[i] > indentLines / 10)
+		if(diffCounts[i] > maxVal && diffCounts[i] > thresholdLines / 10)
 		{
 			maxPos = i + minIndent;
 			maxVal = diffCounts[i];
