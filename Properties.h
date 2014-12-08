@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * This file is part of Auto Tab Setup.
  * Copyright © 2014 by the authors - see the AUTHORS file for details.
  * 
@@ -14,40 +14,6 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include "stdafx.h"
-#include "AppEventSink.h"
-#include "Properties.h"
-
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-					 )
-{
-    return TRUE;
-}
-
-bool __stdcall pn_init_extension(int iface_version, extensions::IPN* pn)
-{
-	if(iface_version != PN_EXT_IFACE_VERSION)
-	{
-		return false;
-	}
-	
-	// Store a global reference to the IPN instance
-	g_pn = pn;
-
-	extensions::IAppEventSinkPtr appSink(new AppEventSink());
-	pn->AddEventSink(appSink);
-
-	return true;
-}
-
-void __declspec(dllexport) __stdcall pn_get_extension_info(PN::BaseString& name, PN::BaseString& version)
-{
-	name = PRODUCT_NAME;
-	version = VERSION_STR;
-}
-
-void __declspec(dllexport) __stdcall pn_exit_extension()
-{
-}
+#define PRODUCT_NAME "Auto Tab Setup"
+#define VERSION_VAL  1,0,0,0
+#define VERSION_STR  "1.0"

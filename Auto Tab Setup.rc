@@ -1,0 +1,45 @@
+/* 
+ * This file is part of Auto Tab Setup.
+ * Copyright © 2014 by the authors - see the AUTHORS file for details.
+ * 
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
+ * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
+ * License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
+#include "windows.h"
+#include "Properties.h"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION VERSION_VAL
+PRODUCTVERSION VERSION_VAL
+FILEOS VOS_NT
+FILETYPE VFT_DLL
+{
+	BLOCK "StringFileInfo"
+	{
+		BLOCK "080904b0"
+		{
+			VALUE "FileDescription",  PRODUCT_NAME
+			VALUE "ProductName",      PRODUCT_NAME
+			VALUE "CompanyName",      "nerdoftheherd.com"
+			VALUE "FileVersion",      VERSION_STR
+			VALUE "ProductVersion",   VERSION_STR
+			VALUE "InternalName",     PRODUCT_NAME ".dll"
+			VALUE "OriginalFilename", PRODUCT_NAME ".dll"
+			VALUE "LegalCopyright",   "Copyright © 2014 Matt Robinson"
+		}
+	}
+
+	BLOCK "VarFileInfo"
+	{
+		VALUE "Translation", 0x0809 0x04B0
+	}
+}

@@ -93,7 +93,11 @@
     <ClInclude Include="AppEventSink.h" />
     <ClInclude Include="DocEventSink.h" />
     <ClInclude Include="FindIndent.h" />
+    <ClInclude Include="Properties.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Auto Tab Setup.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
