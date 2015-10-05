@@ -14,7 +14,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include "stdafx.h"
+#include "Common.h"
 #include "AppEventSink.h"
 #include "DocEventSink.h"
 

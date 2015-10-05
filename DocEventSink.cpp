@@ -14,9 +14,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include "stdafx.h"
+#include "Common.h"
 #include "DocEventSink.h"
-#include "FindIndent.h"
+#include <FindIndent.h>
 #include <vector>
 
 /// Called when the document closes

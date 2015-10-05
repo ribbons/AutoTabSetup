@@ -1,0 +1,4 @@
+[submodule "libfindindent"]
+	path = libfindindent
+	url = https://github.com/ribbons/libfindindent.git
+	branch = master

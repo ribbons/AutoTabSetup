@@ -13,11 +13,20 @@ Develop
 
 You'll need the following before you can start developing:
 
-* [Microsoft Visual C++ Express 2010](http://www.visualstudio.com/downloads/download-visual-studio-vs#DownloadFamilies_4)
+* [CMake](https://cmake.org/) in your PATH
+* [Microsoft Visual C++](http://www.visualstudio.com/downloads/download-visual-studio-vs)
 * The [Boost](http://boost.org/) C++ library
 * The Programmer's Notepad SDK
 
-Then you are ready to open `Auto Tab Setup.sln` and get stuck in...
+Then, open a command prompt in the root of the project, set `BOOST_ROOT` to the location of Boost, `PN_SDK_DIR` to the Programmer's Notepad SDK directory and then run the following to generate the build files:
+
+``` dos
+mkdir build
+cd build
+CMake ..
+```
+
+Finally, you can open `build\Auto Tab Setup.sln` and get stuck in...
 
 Contribute
 ----------
