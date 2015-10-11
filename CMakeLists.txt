@@ -40,4 +40,4 @@ add_library(AutoTabSetup SHARED
             AppEventSink.h DocEventSink.h Properties.h Common.h
             "Auto Tab Setup.rc" "Auto Tab Setup.def")
 set_target_properties(AutoTabSetup PROPERTIES OUTPUT_NAME "Auto Tab Setup")
-TARGET_LINK_LIBRARIES(AutoTabSetup libfindindent)
+TARGET_LINK_LIBRARIES(AutoTabSetup findindent)
