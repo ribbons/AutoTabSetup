@@ -1,6 +1,9 @@
 Auto Tab Setup
 ==============
 
+**As I have moved away from Windows as my main OS and Programmer's Notepad
+appears to be more-or-less dead, I am no-longer maintaining Auto Tab Setup.**
+
 Auto Tab Setup is a [Programmer's Notepad](http://www.pnotepad.org/) add-on which automatically configures the indent style and size to match the currently loaded text file.
 
 Install
@@ -27,8 +30,3 @@ CMake ..
 ```
 
 Finally, you can open `build\Auto Tab Setup.sln` and get stuck in...
-
-Contribute
-----------
-
-Please feel free to send pull requests to fix bugs, add enhancements or add documentation.
